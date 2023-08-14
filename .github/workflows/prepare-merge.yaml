@@ -1,20 +1,7 @@
 on: push
 
-permissions:
-    contents: write
-    pull-requests: read
-    
-
 jobs:
     merge:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-              with:
-                fetch-depth: 0
-            - run: git branch -al
-            - run: git fetch --all -t
-            - run: git --no-pager log
             - uses: JonDotsoy/prerelease-action@v0
-              env:
-                GH_TOKEN: ${{ github.token }}
