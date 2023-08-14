@@ -1,0 +1,11 @@
+name: pre-release workflow
+
+on:
+    push:
+        branches: pre-release
+
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo ok
