@@ -1,0 +1,39 @@
+name: Prerelease
+
+on:
+  workflow_dispatch: {}
+  issues:
+    types:
+      - labeled
+  push:
+    branches:
+      - feature/*
+      - develop
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    outputs:
+      created: ${{ steps.feature-branching.outputs.created }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: JonDotsoy/feature-branching@v2-preview
+        id: feature-branching
+        with:
+          base_brach: develop
+          label_name_to_merge: feature-branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  say_hello:
+    needs: merge
+    if: needs.merge.outputs.created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
