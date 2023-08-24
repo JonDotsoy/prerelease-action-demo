@@ -9,6 +9,9 @@ on:
       - synchronize
     branches:
       - develop
+  push:
+    branches:
+      - develop
 
 permissions:
   contents: write
