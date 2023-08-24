@@ -30,7 +30,7 @@ jobs:
         id: feature-branching
         with:
           base_brach: develop
-          label_name_to_merge: feature-branch
+          label_name_to_merge: next-feature
         env:
           GH_TOKEN: ${{ github.token }}
       - run: |
