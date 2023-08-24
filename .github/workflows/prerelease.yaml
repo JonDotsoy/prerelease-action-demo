@@ -1,13 +1,13 @@
-name: Prerelease
+name: 
 
 on:
   workflow_dispatch: {}
-  issues:
+  pull_request:
     types:
       - labeled
-  push:
+      - unlabeled
+      - synchronize
     branches:
-      - feature/*
       - develop
 
 permissions:
