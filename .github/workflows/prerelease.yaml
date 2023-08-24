@@ -18,7 +18,7 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     outputs:
-      created: ${{ steps.feature-branching.outputs.created }}
+      changed: ${{ steps.feature-branching.outputs.changed }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -31,11 +31,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
       - run: |
-          echo Last REF: ${{ steps.feature-branching.outputs.ref }}
+          echo Last feature-branching.outputs.ref	: ${{ steps.feature-branching.outputs.ref	 }}
+      - run: |
+          echo Last feature-branching.outputs.changed: ${{ steps.feature-branching.outputs.changed }}
+      - run: |
+          echo Last feature-branching.outputs.pr_name: ${{ steps.feature-branching.outputs.pr_name }}
 
   say_hello:
     needs: merge
-    if: needs.merge.outputs.created == 'true'
+    if: needs.merge.outputs.changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - run: echo ok
