@@ -30,6 +30,8 @@ jobs:
           label_name_to_merge: feature-branch
         env:
           GH_TOKEN: ${{ github.token }}
+      - run: |
+          echo Last REF: ${{ steps.feature-branching.outputs.ref }}
 
   say_hello:
     needs: merge
