@@ -7,6 +7,7 @@ on:
       - labeled
       - unlabeled
       - synchronize
+      - ready_for_review
     branches:
       - develop
   push:
@@ -26,7 +27,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: JonDotsoy/feature-branching@v2-preview
+      - uses: JonDotsoy/feature-branching@preview/feature/summary-logs
         id: feature-branching
         with:
           base_brach: develop
